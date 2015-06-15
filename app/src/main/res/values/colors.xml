@@ -40,6 +40,8 @@
     <color name="driver_index5_bg">#61ACFF</color>
     <color name="driver_index6_bg">#398DFF</color>
 
+    <color name="driver_index_selector_bg">#4DD0C8</color>
+
     <color name="source_phone_pressed_color">#FEC107</color>
     <color name="common_or_bg">#F0CE29</color>
     <color name="common_btn_bg">#0C9D56</color>

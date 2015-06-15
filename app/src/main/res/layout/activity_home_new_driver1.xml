@@ -48,7 +48,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:background="@drawable/driver_shape1"
+                android:background="@drawable/driver_selector1"
                 android:onClick="onFocusSource"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -72,7 +72,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/home_drawable_space"
-                android:background="@drawable/driver_shape2"
+                android:background="@drawable/driver_selector2"
                 android:onClick="onSearchSource"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -100,7 +100,7 @@
             android:layout_marginLeft="@dimen/home_drawable_space"
             android:layout_marginRight="@dimen/home_drawable_space"
             android:onClick="onShakeSearch"
-            android:background="@drawable/driver_shape3">
+            android:background="@drawable/driver_selector3">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -139,7 +139,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:background="@drawable/driver_shape4"
+                android:background="@drawable/driver_selector4"
                 android:onClick="onPublishCar"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -169,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:layout_height="0dp"
-                    android:background="@drawable/driver_shape5"
+                    android:background="@drawable/driver_selector5"
                     android:gravity="center"
                     android:onClick="onInvoice"
                     android:orientation="horizontal">
@@ -193,7 +193,7 @@
                     android:layout_weight="1"
                     android:layout_height="0dp"
                     android:layout_marginTop="@dimen/home_drawable_space"
-                    android:background="@drawable/driver_shape6"
+                    android:background="@drawable/driver_selector6"
                     android:gravity="center"
                     android:onClick="onSettingDriver"
                     android:orientation="horizontal">

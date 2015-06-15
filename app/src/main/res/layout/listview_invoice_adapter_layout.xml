@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
     android:gravity="center_vertical"
-    android:background="@color/TextColorWhite"
+    android:background="@drawable/list_selector"
     android:padding="3dp"
     android:orientation="horizontal">
 

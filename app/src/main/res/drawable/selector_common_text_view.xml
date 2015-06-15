@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
     <item android:drawable="@drawable/common_text_view_bg" android:state_focused="false"/>
     <item android:drawable="@drawable/common_text_view_bg_pressed" android:state_focused="true"/>
+-->
+    <item android:state_pressed="false">
+        <color android:color="#ffffff"/>
+    </item>
+    <item android:state_pressed="true">
+        <color android:color="#EDEDED"/>
+    </item>
 </selector>
