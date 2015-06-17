@@ -60,8 +60,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left|center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -70,11 +69,10 @@
                     android:text="险种:" />
 
                 <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/home_publish_spinner_style"
                     android:entries="@array/safe_pingan_types"
-                    android:textSize="@dimen/font_size_normal"
-                    android:layout_weight="1" />
+                    android:layout_marginLeft="5dp"
+                    />
             </LinearLayout>
 
             <LinearLayout style="@style/safe_text_title_pingan_container_style">
