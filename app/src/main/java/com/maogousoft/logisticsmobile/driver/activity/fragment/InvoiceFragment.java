@@ -100,8 +100,12 @@ public class InvoiceFragment extends BaseListFragment implements AbsListView.OnS
     }
 
     public void removeDataAndNotifyDataChange(Object object) {
-        mAdapter.getList().remove(object);
-        mAdapter.notifyDataSetChanged();
+        if(mAdapter != null) {
+            if(mAdapter.getList() != null) {
+                mAdapter.getList().remove(object);
+            }
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     // 根据条件请求指定页数的数据

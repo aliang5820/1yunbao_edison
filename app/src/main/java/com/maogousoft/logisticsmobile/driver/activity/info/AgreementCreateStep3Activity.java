@@ -283,27 +283,18 @@ public class AgreementCreateStep3Activity extends BaseActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            String msg = data.getStringExtra(Constants.COMMON_KEY);
-            if (TextUtils.isEmpty("msg")) {
-                showMsg("支付密码验证成功,发送承运方!");
-                mWebView.loadUrl("javascript:sendContract()");
-            } else {
-                showMsg(msg);
-            }
-        }
-    }
-
-    @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         String msg = intent.getStringExtra(Constants.COMMON_KEY);
-        if (TextUtils.isEmpty(msg)) {
-            Toast.makeText(mContext, "支付密码验证成功,正在发送承运方!", Toast.LENGTH_SHORT).show();
-            mWebView.loadUrl("javascript:sendContract()");
-        } else if (!TextUtils.isEmpty(msg)) {
-            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+        int result = intent.getIntExtra(Constants.PAY_RESULT, -1);
+        switch (result) {
+            case 0:
+                showMsg(msg);
+                mWebView.loadUrl("javascript:sendContract()");
+                break;
+            case 1:
+                showMsg(msg);
+                break;
         }
     }
 }

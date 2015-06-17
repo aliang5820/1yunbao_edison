@@ -160,8 +160,17 @@ public class NewSourceInfo implements Serializable {
     private String is_has_invite;//是否有邀约
     private String is_truck_loading_success;//是否装车不成功 “Y“装车不成功“N”装车成功
     private List<CarrierInfo> carrierInfoList;//抢单报价列表
+	private int contract_type;//司机用(合同类型)
 
-    public List<CarrierInfo> getCarrierInfoList() {
+	public int getContract_type() {
+		return contract_type;
+	}
+
+	public void setContract_type(int contract_type) {
+		this.contract_type = contract_type;
+	}
+
+	public List<CarrierInfo> getCarrierInfoList() {
         return carrierInfoList;
     }
 

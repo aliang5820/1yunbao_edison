@@ -113,7 +113,7 @@ public class TruckFailInfoActivity extends BaseActivity {
             final JSONObject jsonObject = new JSONObject();
             jsonObject.put(Constants.ACTION, Constants.LOADING_FAIL_CONTRACT_BALANCE);
             jsonObject.put(Constants.TOKEN, application.getToken());
-            jsonObject.put(Constants.JSON, new JSONObject().put("order_id", orderId));
+            jsonObject.put(Constants.JSON, new JSONObject().put("order_id", orderId).toString());
 
             ApiClient.doWithObject(Constants.DRIVER_SERVER_URL, jsonObject,
                     null, new AjaxCallBack() {
@@ -123,7 +123,7 @@ public class TruckFailInfoActivity extends BaseActivity {
                             dismissProgress();
                             switch (code) {
                                 case ResultCode.RESULT_OK:
-                                    showMsg("装车失败确认完结货单!");
+                                    showMsg("装车失败已确认完结货单!");
                                     Intent intent = new Intent(Constants.ACTION_NOTIFICATION_ORDER_CONFIRM);
                                     intent.putExtra(Constants.ORDER_ID, orderId);
                                     sendBroadcast(intent);

@@ -223,7 +223,7 @@ public class InvoiceAdapter extends BaseListAdapter<NewSourceInfo> {
         holder.carrierButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                if(checked) {
+                if (checked) {
                     holder.carrierView.setVisibility(View.VISIBLE);
                     holder.carrierView.initData(sourceInfo.getId(), sparseArray.get(sourceInfo.getId()), application, new DataCallBack() {
                         @Override
@@ -240,8 +240,13 @@ public class InvoiceAdapter extends BaseListAdapter<NewSourceInfo> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //如果状态是2,则合同签约失败,可查看失败状态
-                if (TextUtils.equals("2", sourceInfo.getContract_status())) {
+
+                if ((application.getUserType() == Constants.USER_SHIPPER && TextUtils.equals("7", sourceInfo.getContract_status()))
+                        || (application.getUserType() == Constants.USER_DRIVER && 2 == sourceInfo.getContract_type())) {
+                    //如果货主状态是7或者司机状态为2,则不能看到货单详情
+                    showMsg("您没有权限查看货单详情");
+                } else if (TextUtils.equals("2", sourceInfo.getContract_status())) {
+                    //如果状态是2,则合同签约失败,可查看失败状态
                     final MyAlertDialog dialog = new MyAlertDialog(mContext, R.style.DialogTheme);
                     dialog.show();
                     dialog.setTitle("签约失败");

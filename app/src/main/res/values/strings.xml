@@ -458,7 +458,7 @@
     <string name="agreement_carrier_name">姓名：%s</string>
     <string name="agreement_carrier_phone">电话：%s</string>
     <string name="agreement_carrier_price">报价：%.2f元</string>
-    <string name="agreement_shipper">公路运输货物服务协议&lt;font color=&quot;#0C9D56&quot;&gt;(物流公司、厂家使用)&lt;/font&gt;</string>
+    <string name="agreement_shipper">公路运输货物服务协议&lt;font color=&quot;#0C9D56&quot;&gt;(物流公司)&lt;/font&gt;</string>
     <string name="agreement_third">公路运输货物配载服务合同&lt;font color=&quot;#0C9D56&quot;&gt;(信息中介使用)&lt;/font&gt;</string>
     <string name="agreement_tip">\t\t点击【确认】后合同立即生效，平台将冻结你的保证金%1$s元以及管理费%2$s元，直到本次交易结束，为了确保你的财产安全，如果本次签约属于你本人自愿的行为，请在下面框中输入你的运宝支付密码，然后点【确认】键</string>
     <!--货单-->

@@ -74,13 +74,16 @@ public class AgreementCreateStep4Activity extends BaseActivity {
                             Intent intent = new Intent(mContext, AgreementCreateStep3Activity.class);
                             switch (code) {
                                 case ResultCode.RESULT_OK:
-                                    intent.putExtra(Constants.COMMON_KEY, "");
+                                    intent.putExtra(Constants.COMMON_KEY, "支付密码验证成功,正在发送承运方!");
+                                    intent.putExtra(Constants.PAY_RESULT, 0);
                                     break;
                                 case ResultCode.RESULT_ERROR:
                                     intent.putExtra(Constants.COMMON_KEY, result.toString());
+                                    intent.putExtra(Constants.PAY_RESULT, 1);
                                     break;
                                 case ResultCode.RESULT_FAILED:
                                     intent.putExtra(Constants.COMMON_KEY, result.toString());
+                                    intent.putExtra(Constants.PAY_RESULT, 1);
                                     break;
                                 default:
                                     break;

@@ -581,6 +581,7 @@ public class Constants {
     public static final String COMMON_KEY = "common_key";
     public static final String COMMON_KEY_1 = "common_key_1";
     public static final String COMMON_KEY_2 = "common_key_2";
+    public static final String PAY_RESULT = "PAY_RESULT";
     public static final String IS_MY_REPUTATION = "IS_MY_REPUTATION";
     public static final String IS_CAR_REPUTATION = "IS_CAR_REPUTATION";
     public static final String AGREEMENT_TYPE = "AGREEMENT_TYPE";
