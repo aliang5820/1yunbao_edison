@@ -15,6 +15,7 @@ import com.maogousoft.logisticsmobile.driver.R;
 import com.maogousoft.logisticsmobile.driver.activity.BaseActivity;
 import com.maogousoft.logisticsmobile.driver.activity.MainActivity;
 import com.maogousoft.logisticsmobile.driver.activity.info.OptionalActivity;
+import com.maogousoft.logisticsmobile.driver.activity.info.OptionalShipperActivity;
 import com.maogousoft.logisticsmobile.driver.activity.share.ShareActivity;
 import com.maogousoft.logisticsmobile.driver.adapter.BaseListAdapter;
 import com.maogousoft.logisticsmobile.driver.adapter.FocusLineAdapter;
@@ -117,10 +118,10 @@ public class SearchSourceActivity extends BaseActivity {
     }
 
     private void search(int validateDateLong) {
-        // 先检测是否已经完善了资料
+        submit(validateDateLong);
+        /*// 先检测是否已经完善了资料
         if (application.getUserType() == Constants.USER_SHIPPER || application.checkIsRegOptional()) {
             // 参数0代表短期货源
-            submit(validateDateLong);
         } else {
             final MyAlertDialog dialog = new MyAlertDialog(mContext, R.style.DialogTheme);
             dialog.show();
@@ -131,7 +132,12 @@ public class SearchSourceActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Intent intent = new Intent(mContext, OptionalActivity.class);
+                    Intent intent;
+                    if(application.getUserType() == Constants.USER_DRIVER) {
+                        intent = new Intent(mContext, OptionalActivity.class);
+                    } else {
+                        intent = new Intent(mContext, OptionalShipperActivity.class);
+                    }
                     intent.putExtra("isFormRegisterActivity", false);
                     startActivity(intent);
                     finish();
@@ -144,7 +150,7 @@ public class SearchSourceActivity extends BaseActivity {
                     dialog.dismiss();
                 }
             });
-        }
+        }*/
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.maogousoft.logisticsmobile.driver.Constants;
 import com.maogousoft.logisticsmobile.driver.R;
+import com.maogousoft.logisticsmobile.driver.activity.info.PushToDriverActivity;
 import com.maogousoft.logisticsmobile.driver.api.AjaxCallBack;
 import com.maogousoft.logisticsmobile.driver.api.ApiClient;
 import com.maogousoft.logisticsmobile.driver.api.ResultCode;
@@ -152,7 +153,11 @@ public class SearchCarInfoListAdapter extends BaseListAdapter<CarInfo> implement
 
     //给司机推送货源
     public void notifySource(CarInfo carInfo) {
-        Toast.makeText(mContext, "请求已发送", Toast.LENGTH_SHORT).show();
+        if(carInfo.getDriverInfo() != null && carInfo.getDriverInfo().getId() != -1) {
+            mContext.startActivity(new Intent(mContext, PushToDriverActivity.class).putExtra(Constants.DRIVER_ID, carInfo.getDriverInfo().getId()));
+        } else {
+            showMsg("没有对应的司机信息！");
+        }
     }
 
     // 添加到我的车队
@@ -197,7 +202,7 @@ public class SearchCarInfoListAdapter extends BaseListAdapter<CarInfo> implement
                             dismissProgress();
                             switch (code) {
                                 case ResultCode.RESULT_OK:
-                                    Toast.makeText(mContext, "添加车辆成功!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(mContext, "成功添加到我的车队!", Toast.LENGTH_SHORT).show();
                                     break;
                                 case ResultCode.RESULT_ERROR:
                                     if (result instanceof String)

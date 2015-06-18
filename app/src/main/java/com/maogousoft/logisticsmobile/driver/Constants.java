@@ -602,6 +602,7 @@ public class Constants {
     public static final int EDIT_CAR = 1;
     // 传递订单编号
     public static final String ORDER_ID = "order_id";
+    public static final String DRIVER_ID = "driver_id";
 
     public static String MAP_TYPE = "MAP_TYPE";
     public static String MAP_TYPE_DEFAULT = "default";

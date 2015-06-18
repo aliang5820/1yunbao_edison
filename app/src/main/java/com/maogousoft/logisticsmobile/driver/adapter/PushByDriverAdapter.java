@@ -23,13 +23,13 @@ import com.ybxiang.driver.activity.MyCarsDetailActivity;
  *
  * @author ybxiang
  */
-public class PushToDriverAdapter extends BaseListAdapter<CarInfo> implements View.OnClickListener {
+public class PushByDriverAdapter extends BaseListAdapter<CarInfo> implements View.OnClickListener {
 
     private Context mContext;
     private CityDBUtils dbUtils;
     private SparseArray<CarInfo> sparseArray = new SparseArray<CarInfo>();
 
-    public PushToDriverAdapter(Context context) {
+    public PushByDriverAdapter(Context context) {
         super(context);
         mContext = context;
         dbUtils = new CityDBUtils(application.getCitySDB());

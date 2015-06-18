@@ -13,10 +13,13 @@ import com.maogousoft.logisticsmobile.driver.Constants;
 import com.maogousoft.logisticsmobile.driver.R;
 import com.maogousoft.logisticsmobile.driver.activity.BaseActivity;
 import com.maogousoft.logisticsmobile.driver.activity.MainActivity;
+import com.maogousoft.logisticsmobile.driver.activity.info.OptionalActivity;
 import com.maogousoft.logisticsmobile.driver.api.AjaxCallBack;
 import com.maogousoft.logisticsmobile.driver.api.ApiClient;
 import com.maogousoft.logisticsmobile.driver.api.ResultCode;
 import com.maogousoft.logisticsmobile.driver.model.NewSourceInfo;
+import com.maogousoft.logisticsmobile.driver.utils.MyAlertDialog;
+
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -252,14 +255,29 @@ public class PublishGoodsSourceActivity extends BaseActivity implements OnClickL
                             dismissProgress();
                             switch (code) {
                                 case ResultCode.RESULT_OK:
-                                    Toast.makeText(mContext, "发布货源成功", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent();
-                                    intent.setClass(mContext, MySourceActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    final MyAlertDialog dialog = new MyAlertDialog(mContext, R.style.DialogTheme);
+                                    dialog.show();
+                                    dialog.setTitle("提示");
+                                    dialog.setMessage("货源发布成功");
+                                    dialog.setLeftButton("确定",
+                                            new OnClickListener() {
+
+                                                @Override
+                                                public void onClick(View v) {
+                                                    dialog.dismiss();
+                                                    Intent intent = new Intent();
+                                                    intent.setClass(mContext, MySourceActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                            });
                                     break;
                                 case ResultCode.RESULT_FAILED:
-                                    Toast.makeText(mContext, "发布货源失败", Toast.LENGTH_SHORT).show();
+                                    if(result instanceof String) {
+                                        Toast.makeText(mContext, result.toString(), Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(mContext, "发布货源失败", Toast.LENGTH_SHORT).show();
+                                    }
                                     break;
                             }
 

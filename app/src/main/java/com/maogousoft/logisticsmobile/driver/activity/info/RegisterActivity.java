@@ -476,42 +476,43 @@ public class RegisterActivity extends BaseActivity {
                             dismissProgress();
                             switch (code) {
                                 case ResultCode.RESULT_OK:
-                                    UserInfo mUserInfo = (UserInfo) result;
-                                    application.setToken(mUserInfo.getToken());
-                                    application.writeUserInfo(mPhone.getText()
-                                            .toString(), mPassword.getText()
-                                            .toString(), mUserInfo.getDriver_id(), mUserInfo.getId());
-                                    application.startXMPPService();
+                                    if (result instanceof UserInfo) {
+                                        UserInfo mUserInfo = (UserInfo) result;
+                                        application.setToken(mUserInfo.getToken());
+                                        application.writeUserInfo(mPhone.getText()
+                                                .toString(), mPassword.getText()
+                                                .toString(), mUserInfo.getDriver_id(), mUserInfo.getId());
+                                        application.startXMPPService();
 
-                                    final MyAlertDialog dialog = new MyAlertDialog(mContext, R.style.DialogTheme);
-                                    dialog.show();
-                                    dialog.setTitle("提示");
-                                    dialog.setMessage("注册成功");
-                                    dialog.setLeftButton("完善资料",
-                                            new OnClickListener() {
+                                        final MyAlertDialog dialog = new MyAlertDialog(mContext, R.style.DialogTheme);
+                                        dialog.show();
+                                        dialog.setTitle("提示");
+                                        dialog.setMessage("注册成功");
+                                        dialog.setLeftButton("完善资料",
+                                                new OnClickListener() {
 
-                                                @Override
-                                                public void onClick(View v) {
-                                                    dialog.dismiss();
-                                                    Intent intent = new Intent(mContext, OptionalActivity.class);
-                                                    intent.putExtra("isFormRegisterActivity", true);
-                                                    startActivity(intent);
-                                                    finish();
-                                                }
-                                            });
-                                    dialog.setRightButton("进入易运宝",
-                                            new OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        dialog.dismiss();
+                                                        Intent intent = new Intent(mContext, OptionalActivity.class);
+                                                        intent.putExtra("isFormRegisterActivity", true);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                });
+                                        dialog.setRightButton("进入易运宝",
+                                                new OnClickListener() {
 
-                                                @Override
-                                                public void onClick(View v) {
-                                                    dialog.dismiss();
-                                                    startActivity(new Intent(mContext, MainActivity.class));
-                                                    // 第一次进入，获取 所有 新货源
-                                                    getNewSourceData(1);
-                                                    finish();
-                                                }
-                                            });
-
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        dialog.dismiss();
+                                                        startActivity(new Intent(mContext, MainActivity.class));
+                                                        // 第一次进入，获取 所有 新货源
+                                                        getNewSourceData(1);
+                                                        finish();
+                                                    }
+                                                });
+                                    }
                                     break;
                                 case ResultCode.RESULT_ERROR:
                                     if (result != null)

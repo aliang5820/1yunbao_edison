@@ -18,6 +18,7 @@ import com.maogousoft.logisticsmobile.driver.Constants;
 import com.maogousoft.logisticsmobile.driver.R;
 import com.maogousoft.logisticsmobile.driver.activity.BaseActivity;
 import com.maogousoft.logisticsmobile.driver.activity.home.UserCreditActivity;
+import com.maogousoft.logisticsmobile.driver.activity.info.PushToDriverActivity;
 import com.maogousoft.logisticsmobile.driver.activity.share.ShareActivity;
 import com.maogousoft.logisticsmobile.driver.api.AjaxCallBack;
 import com.maogousoft.logisticsmobile.driver.api.ApiClient;
@@ -273,6 +274,12 @@ public class MyCarsDetailActivity extends BaseActivity implements AdapterView.On
                 String wayEnd1 = dbUtils.getCityInfo(carInfo.getEnd_province1(), carInfo.getEnd_city1(), carInfo.getEnd_district1());
                 sb2.append(wayStart + "--" + wayEnd1);
                 way1.setText(sb2.toString());
+                way1.setVisibility(View.VISIBLE);
+            } else if (carInfo.getEnd_province() > 0 || carInfo.getEnd_city() > 0 || carInfo.getEnd_district() > 0) {
+                String wayEnd = dbUtils.getCityInfo(carInfo.getEnd_province(), carInfo.getEnd_city(), carInfo.getEnd_district());
+                sb1.append(wayStart + "--" + wayEnd);
+                way1.setText(sb1.toString());
+                way1.setVisibility(View.VISIBLE);
             }
             if (carInfo.getEnd_province2() > 0 || carInfo.getEnd_city2() > 0 || carInfo.getEnd_district2() > 0) {
                 String wayEnd2 = dbUtils.getCityInfo(carInfo.getEnd_province2(), carInfo.getEnd_city2(), carInfo.getEnd_district2());
@@ -555,50 +562,34 @@ public class MyCarsDetailActivity extends BaseActivity implements AdapterView.On
         builder.create().show();
     }
 
-    // 添加到我的车队
-    private void addCarToMyFleet() {
+    // 添加到我的车队s
+    private void addToMyCar() {
         try {
+            if (TextUtils.isEmpty(carInfo.getPlate_number())) {
+                Toast.makeText(mContext, "车源的车牌号码为空，不能添加到车队", Toast.LENGTH_SHORT).show();
+                return;
+            }
             final JSONObject jsonObject = new JSONObject();
-            jsonObject.put(Constants.ACTION, Constants.ADD_MY_FLEET);
+            JSONObject params = new JSONObject();
+            jsonObject.put(Constants.ACTION, Constants.ADD_MY_FLEET_BY_ACCOUNT);
             jsonObject.put(Constants.TOKEN, application.getToken());
             //组装参数
-            JSONObject params = new JSONObject();
-            params.put("driver_name", carInfo.getOwer_name());
-            params.put("phone", carInfo.getOwer_phone());
-            params.put("start_province", carInfo.getStart_province());
-            params.put("start_city", carInfo.getStart_city());
-            params.put("start_district", carInfo.getStart_district());
-            params.put("end_province1", carInfo.getEnd_province());
-            params.put("end_city1", carInfo.getEnd_city());
-            params.put("end_district1", carInfo.getEnd_district());
-            params.put("car_length", carInfo.getCar_length());
-            params.put("car_weight", carInfo.getCar_weight());
-            params.put("plate_number", carInfo.getPlate_number());
-            params.put("car_type", carInfo.getCar_type());
-            params.put("remark", carInfo.getRemark());
-            if (TextUtils.isEmpty(carInfo.getLast_position_time())) {
-                params.put("location_time", carInfo.getPulish_date());
-            } else {
-                params.put("location_time", carInfo.getLast_position_time());
-            }
-            if (TextUtils.isEmpty(carInfo.getLocation())) {
-                params.put("location", carInfo.getAddress());
-            } else {
-                params.put("location", carInfo.getLocation());
-            }
+            params.put("account", carInfo.getPlate_number());
             //组装参数结束
             jsonObject.put(Constants.JSON, params.toString());
             showSpecialProgress();
             ApiClient.doWithObject(Constants.DRIVER_SERVER_URL, jsonObject,
-                    CarInfo.class, new AjaxCallBack() {
+                    null, new AjaxCallBack() {
 
                         @Override
                         public void receive(int code, Object result) {
                             dismissProgress();
                             switch (code) {
                                 case ResultCode.RESULT_OK:
-                                    Toast.makeText(mContext, "添加车辆成功!", Toast.LENGTH_SHORT).show();
-                                    finish();
+                                    if (result instanceof String) {
+                                        showMsg(result.toString());
+                                        finish();
+                                    }
                                     break;
                                 case ResultCode.RESULT_ERROR:
                                     if (result instanceof String)
@@ -641,7 +632,7 @@ public class MyCarsDetailActivity extends BaseActivity implements AdapterView.On
                 startActivity(new Intent(mContext, ShareActivity.class));
                 break;
             case 2:
-                addCarToMyFleet();
+                addToMyCar();
                 break;
             case 3:
                 onSendMessage();
@@ -650,7 +641,11 @@ public class MyCarsDetailActivity extends BaseActivity implements AdapterView.On
                 onCall();
                 break;
             case 5:
-                showMsg(view.toString());
+                if(carInfo.getDriverInfo() != null && carInfo.getDriverInfo().getId() != -1) {
+                    startActivity(new Intent(mContext, PushToDriverActivity.class).putExtra(Constants.DRIVER_ID, carInfo.getDriverInfo().getId()));
+                } else {
+                    showMsg("没有对应的司机信息！");
+                }
                 break;
         }
     }
