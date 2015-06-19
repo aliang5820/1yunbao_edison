@@ -66,7 +66,7 @@ public class NewSourceActivity extends BaseListActivity implements OnScrollListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViews();
-        initData();
+        initData(getIntent());
     }
 
     @Override
@@ -76,7 +76,7 @@ public class NewSourceActivity extends BaseListActivity implements OnScrollListe
         if(mAdapter != null && !mAdapter.isEmpty()) {
             mAdapter.removeAll();
         }
-        initData();
+        initData(intent);
     }
 
     private void initViews() {
@@ -96,10 +96,13 @@ public class NewSourceActivity extends BaseListActivity implements OnScrollListe
 
         mListView.setOnScrollListener(this);
         mMore.setOnClickListener(this);
+
     }
 
-    private void initData() {
-        if (getIntent().hasExtra(Constants.COMMON_OBJECT_KEY)) {
+    private void initData(Intent intent) {
+        mAdapter = new NewSourceListAdapter(mContext);
+        setListShown(false);
+        if (intent.hasExtra(Constants.COMMON_OBJECT_KEY)) {
             String params = getIntent().getStringExtra(Constants.COMMON_KEY);
             try {
                 queryParams = new JSONObject(params);
@@ -107,7 +110,7 @@ public class NewSourceActivity extends BaseListActivity implements OnScrollListe
                 e.printStackTrace();
             }
 
-            newSourceInfos = (List<NewSourceInfo>) getIntent().getSerializableExtra(Constants.COMMON_OBJECT_KEY);
+            newSourceInfos = (List<NewSourceInfo>) intent.getSerializableExtra(Constants.COMMON_OBJECT_KEY);
             // 从 搜索货源进入，不需要显示 搜索货源按钮 modify
             mMore.setText("关注此路线");
             rightButton = 1;
@@ -120,47 +123,47 @@ public class NewSourceActivity extends BaseListActivity implements OnScrollListe
             }
             state = WAIT;
         }
-        if (getIntent().hasExtra("focusLineInfo")) {
-            focusLineInfo = (FocusLineInfo) getIntent().getSerializableExtra("focusLineInfo");
-            params = getIntent().getStringExtra("params");
+        if (intent.hasExtra("focusLineInfo")) {
+            focusLineInfo = (FocusLineInfo) intent.getSerializableExtra("focusLineInfo");
+            params = intent.getStringExtra("params");
         }
-        if (getIntent().hasExtra("getFriendOrderList")) {
-            if (getIntent().getBooleanExtra("getFriendOrderList", false)) {
+        if (intent.hasExtra("getFriendOrderList")) {
+            if (intent.getBooleanExtra("getFriendOrderList", false)) {
                 queryType = Constants.FRIEND_ORDER_LIST;//好友货源
                 mMore.setText("好友管理");
                 titlebar_id_content.setText("好友货源");
                 rightButton = 2;
             }
         }
-        if (getIntent().hasExtra("QUERY_MAIN_LINE_ORDER")) {
-            if (getIntent().getBooleanExtra("QUERY_MAIN_LINE_ORDER", false)) {
+        if (intent.hasExtra("QUERY_MAIN_LINE_ORDER")) {
+            if (intent.getBooleanExtra("QUERY_MAIN_LINE_ORDER", false)) {
                 queryType = Constants.QUERY_MAIN_LINE_ORDER;//关注货源
                 mMore.setText("主营线路");
                 titlebar_id_content.setText("关注货源");
                 rightButton = 3;
             }
         }
-        if (getIntent().hasExtra("SHAKE_ONE_SHAKE")) {
-            if (getIntent().getBooleanExtra("SHAKE_ONE_SHAKE", false)) {
+        if (intent.hasExtra("SHAKE_ONE_SHAKE")) {
+            if (intent.getBooleanExtra("SHAKE_ONE_SHAKE", false)) {
                 queryType = Constants.SHAKE_ONE_SHAKE;//摇一摇
-                params = getIntent().getStringExtra("params");
+                params = intent.getStringExtra("params");
                 mMore.setVisibility(View.GONE);
+                titlebar_id_content.setText(R.string.string_title_newsource);
             }
         }
-        if(getIntent().getBooleanExtra(Constants.SEARCH_SOURCE, false)) {
+        if(intent.getBooleanExtra(Constants.SEARCH_SOURCE, false)) {
             //从搜索过来的货源需要显示总货源数
             addHeaderSearchView();
         }
-
-        mAdapter = new NewSourceListAdapter(mContext);
         setListAdapter(mAdapter);
-        setListShown(false);
     }
 
     private void addHeaderSearchView() {
-        mHeaderView = getLayoutInflater().inflate(R.layout.listview_header_search_layout, null);
-        mHeaderView.setOnClickListener(this);
-        mListView.addHeaderView(mHeaderView);
+        if(mListView.getHeaderViewsCount() == 0) {
+            mHeaderView = getLayoutInflater().inflate(R.layout.listview_header_search_layout, null);
+            mHeaderView.setOnClickListener(this);
+            mListView.addHeaderView(mHeaderView);
+        }
         //查询今日货源数量
         queryAllSourceSize();
     }

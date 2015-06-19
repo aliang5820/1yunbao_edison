@@ -55,12 +55,14 @@ public class ShakeActivity extends BaseActivity implements BDLocationListener {
             mVibrator = (Vibrator) getApplication().getSystemService(VIBRATOR_SERVICE);
         /*mImgUp = (RelativeLayout) findViewById(R.id.shakeImgUp);
         mImgDn = (RelativeLayout) findViewById(R.id.shakeImgDown);*/
-            mShakeListener = new ShakeListener(mContext);
-            mShakeListener.setOnShakeListener(new ShakeListener.OnShakeListener() {
-                public void onShake() {
-                    shakeAction();
-                }
-            });
+            if (!getIntent().hasExtra("QUERY_MAIN_LINE_ORDER") && !getIntent().hasExtra("getFriendOrderList")) {
+                mShakeListener = new ShakeListener(mContext);
+                mShakeListener.setOnShakeListener(new ShakeListener.OnShakeListener() {
+                    public void onShake() {
+                        shakeAction();
+                    }
+                });
+            }
         }
     }
 
