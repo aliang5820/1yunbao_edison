@@ -45,6 +45,8 @@ public class ApiClient<T> {
 
 		private AjaxCallBack callBack;
 
+		private AppException appException;
+
 		public FetchTask(String url, Class<T> cls, JSONObject params, AjaxCallBack callBack) {
 			this.url = url;
 			this.cls = cls;
@@ -61,6 +63,7 @@ public class ApiClient<T> {
 			} catch (AppException e) {
 				LogUtil.e(TAG, "e==" + e.toString());
 				e.printStackTrace();
+				appException = e;
 				return null;
 			}
 		}
@@ -96,6 +99,8 @@ public class ApiClient<T> {
 					} else {
 						callBack.receive(ResultCode.RESULT_FAILED, message);
 					}
+				} else {
+					callBack.receive(ResultCode.RESULT_FAILED, appException.getErrorMessage());
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();

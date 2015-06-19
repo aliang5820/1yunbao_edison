@@ -213,6 +213,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:background="@color/common_line_color" />
+            <!-- 修改密码 -->
+            <TextView
+                style="@style/settingInfoStyle"
+                android:drawableLeft="@drawable/car_info_desc"
+                android:onClick="onChangePasswd"
+                android:text="修改密码" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@color/common_line_color" />
             <!-- 车架号 -->
             <TextView
                 style="@style/settingInfoStyle"

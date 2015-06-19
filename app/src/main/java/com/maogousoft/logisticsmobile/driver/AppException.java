@@ -96,31 +96,32 @@ public class AppException extends Exception implements UncaughtExceptionHandler 
 	}
 
 	/** 提示异常信息 **/
-	public void makeToast(Context ctx) {
+	public String getErrorMessage() {
+		String err = "服务器异常,请联系客服!";
 		switch (this.getType()) {
 		case TYPE_HTTP_CODE:
-			String err = ctx.getString(R.string.http_status_code_error, this.getCode());
-			Toast.makeText(ctx, err, Toast.LENGTH_SHORT).show();
+			err = "网络异常，错误码：" +  this.getCode();
 			break;
 		case TYPE_HTTP_ERROR:
-			Toast.makeText(ctx, R.string.http_exception_error, Toast.LENGTH_SHORT).show();
+			err = "网络异常，请求超时，请检查网络设置";
 			break;
 		case TYPE_SOCKET:
-			Toast.makeText(ctx, R.string.socket_exception_error, Toast.LENGTH_SHORT).show();
+			err = "网络异常，读取数据超时";
 			break;
 		case TYPE_NETWORK:
-			Toast.makeText(ctx, R.string.network_not_connected, Toast.LENGTH_SHORT).show();
+			err = "网络连接失败，请检查网络设置";
 			break;
 		case TYPE_XML:
-			Toast.makeText(ctx, R.string.xml_parser_failed, Toast.LENGTH_SHORT).show();
+			err = "数据解析异常";
 			break;
 		case TYPE_IO:
-			Toast.makeText(ctx, R.string.io_exception_error, Toast.LENGTH_SHORT).show();
+			err = "文件流异常";
 			break;
 		case TYPE_RUN:
-			Toast.makeText(ctx, R.string.app_run_code_error, Toast.LENGTH_SHORT).show();
+			err = "应用程序运行时异常";
 			break;
 		}
+		return err;
 	}
 
 	public static AppException getAppExceptionHandler() {

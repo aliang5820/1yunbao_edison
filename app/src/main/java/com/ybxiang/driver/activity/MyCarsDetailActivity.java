@@ -439,12 +439,12 @@ public class MyCarsDetailActivity extends BaseActivity implements AdapterView.On
                                             }
                                             location_address.setText(info.getAddress());
                                             location_address.setVisibility(View.VISIBLE);
-                                            location_time.setText("时间:" + info.getTimestamp());
+                                            location_time.setText("定位时间:" + info.getTimestamp());
 //                                            Intent intent = new Intent(mContext, MapActivity.class);
 //                                            intent.putExtra(Constants.COMMON_KEY, info);
 //                                            startActivity(intent);
                                         } else {
-                                            Toast.makeText(mContext, "定位超时", Toast.LENGTH_SHORT).show();
+                                            showMsg("定位超时");
                                         }
                                     }
                                     break;
@@ -587,7 +587,11 @@ public class MyCarsDetailActivity extends BaseActivity implements AdapterView.On
                             switch (code) {
                                 case ResultCode.RESULT_OK:
                                     if (result instanceof String) {
-                                        showMsg(result.toString());
+                                        if(!TextUtils.isEmpty(result.toString())) {
+                                            showMsg(result.toString());
+                                        } else {
+                                            showMsg("成功添加到我的车队");
+                                        }
                                         finish();
                                     }
                                     break;

@@ -190,7 +190,7 @@ public class MyabcAccountInfoActivity extends BaseActivity {
         }
     }
 
-    @Override
+    /*@Override
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
@@ -198,7 +198,7 @@ public class MyabcAccountInfoActivity extends BaseActivity {
                 onChangePasswd(v);
                 break;
         }
-    }
+    }*/
 
     public void onEdit(View view) {
         if(Constants.USER_DRIVER == application.getUserType()) {

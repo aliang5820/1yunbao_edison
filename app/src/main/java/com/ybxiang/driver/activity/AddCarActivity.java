@@ -69,7 +69,11 @@ public class AddCarActivity extends BaseActivity {
                             switch (code) {
                                 case ResultCode.RESULT_OK:
                                     if (result instanceof String) {
-                                        showMsg(result.toString());
+                                        if(!TextUtils.isEmpty(result.toString())) {
+                                            showMsg(result.toString());
+                                        } else {
+                                            showMsg("成功添加到我的车队");
+                                        }
                                         finish();
                                     }
                                     break;

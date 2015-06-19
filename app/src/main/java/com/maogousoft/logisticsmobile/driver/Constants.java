@@ -151,8 +151,8 @@ public class Constants {
 	/** 服务器地址 **/
 	// public static final String DRIVER_SERVER_URL =
 	// "http://www.1yunbao.com/service/driver";
-	//public static final String BASE_URL = "http://www.1yunbao.com/service";
-    public static String BASE_URL = "http://1yunbao.com:8083/service";
+	public static final String BASE_URL = "http://www.1yunbao.com/service";
+    //public static String BASE_URL = "http://1yunbao.com:8083/service";
 	//public static final String BASE_URL = "http://192.168.1.110:8080/service";
 	//public static String BASE_URL = "http://192.168.2.189:8080/service";
     /**
@@ -166,19 +166,19 @@ public class Constants {
      */
 
 	/** 服务器地址 **/
-	public static String DRIVER_SERVER_URL = BASE_URL + "/driver";
+	public static final String DRIVER_SERVER_URL = BASE_URL + "/driver";
 	
 	/** 货主端注册地址**/
-	public static String SHIPPER_SERVER_URL = BASE_URL + "/user";
+	public static final String SHIPPER_SERVER_URL = BASE_URL + "/user";
 
 	/** 公用接口地址 **/
-	public static String COMMON_SERVER_URL = BASE_URL + "/common";
+	public static final String COMMON_SERVER_URL = BASE_URL + "/common";
 
 	/** 文件上传地址 **/
-	public static String UPLOAD_FILE_URL = BASE_URL + "/upload/";
+	public static final String UPLOAD_FILE_URL = BASE_URL + "/upload/";
 
 	/** 帮助页面地址 **/
-	public static String HELP_SERVER_URL = BASE_URL + "/help.html";
+	public static final String HELP_SERVER_URL = BASE_URL + "/help.html";
 
 	/** 司机端注册获取验证码 **/
 	public static final String DRIVER_REG_GETCODE = "driver_reg_getcode";

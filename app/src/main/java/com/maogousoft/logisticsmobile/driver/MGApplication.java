@@ -82,17 +82,17 @@ public class MGApplication extends Application {
         //初始化百度sdk
         SDKInitializer.initialize(this);
 		//初始化环境地址,彩蛋功能,用于调试切换
-		initBaseUrl();
+		//initBaseUrl();
 		LogUtil.d("MGApplication", Constants.BASE_URL);
 	}
 
 	private void initBaseUrl() {
-		Constants.BASE_URL = SharedPreferencesProvider.getInstance(this).getBaseUrl();
+		/*Constants.BASE_URL = SharedPreferencesProvider.getInstance(this).getBaseUrl();
 		Constants.DRIVER_SERVER_URL = Constants.BASE_URL + "/driver";
 		Constants.SHIPPER_SERVER_URL = Constants.BASE_URL + "/user";
 		Constants.COMMON_SERVER_URL = Constants.BASE_URL + "/common";
 		Constants.UPLOAD_FILE_URL = Constants.BASE_URL + "/upload/";
-		Constants.HELP_SERVER_URL = Constants.BASE_URL + "/help.html";
+		Constants.HELP_SERVER_URL = Constants.BASE_URL + "/help.html";*/
 	}
 
 	/** 初始化图片加载工具 **/

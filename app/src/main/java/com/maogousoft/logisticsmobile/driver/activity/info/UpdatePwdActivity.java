@@ -115,6 +115,7 @@ public class UpdatePwdActivity extends BaseActivity {
 					case ResultCode.RESULT_OK:
 						application.writeInfo(Constants.XMPP_PASSWORD, mNewPwd2.getText().toString());
 						showMsg(R.string.tips_updatepwd_success);
+						finish();
 						break;
 					case ResultCode.RESULT_ERROR:
 						if (result instanceof String) 
