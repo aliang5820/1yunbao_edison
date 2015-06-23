@@ -121,8 +121,7 @@ public class FindCarActivity extends BaseActivity {
 					@Override
 					public void onClick(View v) {
 						dialog.dismiss();
-						Intent intent = new Intent(mContext,
-								OptionalActivity.class);
+						Intent intent = new Intent(mContext, OptionalActivity.class);
 						intent.putExtra("isFormRegisterActivity", false);
 						startActivity(intent);
 						finish();

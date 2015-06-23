@@ -61,7 +61,6 @@ public class ApiClient<T> {
 				LogUtil.e(TAG, result);
 				return result;
 			} catch (AppException e) {
-				LogUtil.e(TAG, "e==" + e.toString());
 				e.printStackTrace();
 				appException = e;
 				return null;
@@ -100,7 +99,7 @@ public class ApiClient<T> {
 						callBack.receive(ResultCode.RESULT_FAILED, message);
 					}
 				} else {
-					callBack.receive(ResultCode.RESULT_FAILED, appException.getErrorMessage());
+					callBack.receive(ResultCode.RESULT_FAILED, appException == null ? "网络异常!" : appException.getErrorMessage());
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();

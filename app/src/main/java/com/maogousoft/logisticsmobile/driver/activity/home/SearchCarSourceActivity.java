@@ -16,6 +16,7 @@ import com.maogousoft.logisticsmobile.driver.R;
 import com.maogousoft.logisticsmobile.driver.activity.BaseActivity;
 import com.maogousoft.logisticsmobile.driver.activity.CarCloudSearchActivity;
 import com.maogousoft.logisticsmobile.driver.activity.info.OptionalActivity;
+import com.maogousoft.logisticsmobile.driver.activity.info.OptionalShipperActivity;
 import com.maogousoft.logisticsmobile.driver.adapter.BaseListAdapter;
 import com.maogousoft.logisticsmobile.driver.adapter.FocusLineAdapter;
 import com.maogousoft.logisticsmobile.driver.api.AjaxCallBack;
@@ -155,8 +156,7 @@ public class SearchCarSourceActivity extends BaseActivity {
                         @Override
                         public void onClick(View v) {
                             dialog.dismiss();
-                            Intent intent = new Intent(mContext,
-                                    OptionalActivity.class);
+                            Intent intent = new Intent(mContext, OptionalShipperActivity.class);
                             intent.putExtra("isFormRegisterActivity", false);
                             startActivity(intent);
                             finish();

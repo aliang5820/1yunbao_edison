@@ -26,7 +26,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="联系人:" />
@@ -44,7 +44,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="公司名称:" />
@@ -63,7 +63,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="公司地址:" />
@@ -82,7 +82,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="座机号码:" />
@@ -102,7 +102,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="手机号码:" />
@@ -122,7 +122,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="开户银行:" />
@@ -130,7 +130,6 @@
                 <EditText
                     android:id="@+id/optional_bank"
                     style="@style/info_edittext_style"
-                    android:inputType="phone"
                     android:hint="请输入开户银行" />
             </LinearLayout>
 
@@ -141,7 +140,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="银行账号:" />
@@ -149,6 +148,7 @@
                 <EditText
                     android:id="@+id/optional_bank_account"
                     style="@style/info_edittext_style"
+                    android:inputType="phone"
                     android:hint="请输入银行账号" />
             </LinearLayout>
 
@@ -159,7 +159,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="账户姓名:" />
@@ -177,7 +177,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="自我推荐:" />
@@ -196,7 +196,7 @@
 
                 <TextView
                     style="@style/info_register_text_style"
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:text="公司照片:" />
 
                 <ImageView
@@ -216,7 +216,7 @@
 
                 <TextView
                     style="@style/info_register_text_style"
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:text="公司照片:" />
 
                 <ImageView
